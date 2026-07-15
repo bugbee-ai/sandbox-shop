@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Sandbox Shop</string>
+    <string name="checkout_title">Checkout</string>
+    <string name="place_order_button">Place Order</string>
+    <string name="order_success_message">Order placed successfully</string>
+    <string name="order_error_message">Something went wrong. Try again.</string>
+</resources>
