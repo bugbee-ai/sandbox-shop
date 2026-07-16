@@ -1,0 +1,53 @@
+name: Release
+
+on:
+  push:
+    tags: ["v*"]
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    name: Build and publish release
+    runs-on: ubuntu-latest
+    environment:
+      name: production
+      url: ${{ steps.publish.outputs.url }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4
+
+      - name: Set up JDK 17
+        uses: actions/setup-java@c1e323688fd81a25caa38c78aa6df2d33d3e20d9 # v4
+        with:
+          distribution: temurin
+          java-version: "17"
+
+      - name: Set up Android SDK
+        uses: android-actions/setup-android@9fc6c4e9069bf8d3d10b2204b1fb8f6ef7065407 # v3
+
+      - name: Set up Gradle
+        uses: gradle/actions/setup-gradle@ed408507eac070d1f99cc633dbcf757c94c7933a # v4
+
+      - name: Build APK
+        run: ./gradlew assembleDebug --no-daemon --stacktrace
+
+      - name: Stage release asset
+        run: cp app/build/outputs/apk/debug/app-debug.apk "sandbox-shop-${GITHUB_REF_NAME}.apk"
+
+      - name: Publish GitHub Release
+        id: publish
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh release create "$GITHUB_REF_NAME" \
+            --repo "$GITHUB_REPOSITORY" \
+            --title "Sandbox Shop $GITHUB_REF_NAME" \
+            --generate-notes \
+            --notes "Debug-signed APK for sideloading onto a device or emulator. A production pipeline would sign a release build here using keystore secrets stored in Actions." \
+            "sandbox-shop-${GITHUB_REF_NAME}.apk"
+          echo "url=$(gh release view "$GITHUB_REF_NAME" --repo "$GITHUB_REPOSITORY" --json url -q .url)" >> "$GITHUB_OUTPUT"
+
+      - name: Write job summary
+        run: echo "🚀 Published release **$GITHUB_REF_NAME**: ${{ steps.publish.outputs.url }}" >> "$GITHUB_STEP_SUMMARY"
