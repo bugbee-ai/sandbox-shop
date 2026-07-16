@@ -50,4 +50,5 @@ jobs:
           echo "url=$(gh release view "$GITHUB_REF_NAME" --repo "$GITHUB_REPOSITORY" --json url -q .url)" >> "$GITHUB_OUTPUT"
 
       - name: Write job summary
-        run: echo "🚀 Published release **$GITHUB_REF_NAME**: ${{ steps.publish.outputs.url }}" >> "$GITHUB_STEP_SUMMARY"
+        run: |
+          echo "🚀 Published release **$GITHUB_REF_NAME** — ${{ steps.publish.outputs.url }}" >> "$GITHUB_STEP_SUMMARY"
