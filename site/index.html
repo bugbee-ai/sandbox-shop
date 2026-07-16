@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sandbox Shop — GitHub ecosystem showcase</title>
+<style>
+  :root {
+    --bg: #fafaf8; --ink: #1a1a18; --muted: #6b6b66; --card: #ffffff;
+    --line: #e6e4de; --accent: #b45309;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root { --bg: #14140f; --ink: #ece9e2; --muted: #9c988e; --card: #1d1d16; --line: #32322a; --accent: #f59e0b; }
+  }
+  * { box-sizing: border-box; margin: 0; }
+  body {
+    background: var(--bg); color: var(--ink);
+    font: 17px/1.6 ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+    display: grid; place-items: center; min-height: 100vh; padding: 3rem 1.25rem;
+  }
+  main { max-width: 40rem; width: 100%; }
+  .kicker { color: var(--accent); font-weight: 600; letter-spacing: .08em; text-transform: uppercase; font-size: .78rem; }
+  h1 { font-size: clamp(2rem, 6vw, 2.8rem); line-height: 1.15; margin: .4rem 0 1rem; letter-spacing: -.02em; }
+  p.lede { color: var(--muted); margin-bottom: 2rem; }
+  ul { list-style: none; display: grid; gap: .75rem; padding: 0; margin-bottom: 2.5rem; }
+  li {
+    background: var(--card); border: 1px solid var(--line); border-radius: 10px;
+    padding: .85rem 1.1rem; display: flex; gap: .75rem; align-items: baseline;
+  }
+  li b { font-weight: 600; }
+  li span { color: var(--muted); font-size: .92rem; }
+  .links { display: flex; flex-wrap: wrap; gap: .75rem; }
+  .links a {
+    text-decoration: none; font-weight: 600; font-size: .95rem;
+    padding: .6rem 1.1rem; border-radius: 999px; border: 1px solid var(--line); color: var(--ink);
+  }
+  .links a.primary { background: var(--accent); border-color: var(--accent); color: #fff; }
+  footer { margin-top: 3rem; color: var(--muted); font-size: .85rem; }
+</style>
+</head>
+<body>
+<main>
+  <p class="kicker">bugbee-ai / sandbox-shop</p>
+  <h1>A tiny Android app.<br>The whole GitHub ecosystem.</h1>
+  <p class="lede">Sandbox Shop is a minimal Kotlin checkout demo wired into
+  everything GitHub offers a mobile team — this page itself is deployed by
+  GitHub Pages from the same repository.</p>
+  <ul>
+    <li>⚙️ <div><b>CI on every change</b><br><span>Lint, unit tests, and an installable APK from every push and pull request.</span></div></li>
+    <li>🚀 <div><b>One-command releases</b><br><span>Push a version tag; a GitHub Release with the APK appears.</span></div></li>
+    <li>🛡️ <div><b>Security by default</b><br><span>CodeQL scans, Dependabot updates, and secret push protection.</span></div></li>
+    <li>👥 <div><b>Team workflow built in</b><br><span>Issue forms, PR templates, code owners, and a protected main branch.</span></div></li>
+  </ul>
+  <div class="links">
+    <a class="primary" href="https://github.com/bugbee-ai/sandbox-shop">View the repository</a>
+    <a href="https://github.com/bugbee-ai/sandbox-shop/releases/latest">Download the APK</a>
+    <a href="https://github.com/bugbee-ai/sandbox-shop/actions">Watch the pipeline</a>
+  </div>
+  <footer>Deployed automatically by GitHub Actions · MIT licensed</footer>
+</main>
+</body>
+</html>
