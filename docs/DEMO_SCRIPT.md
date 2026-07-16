@@ -31,6 +31,9 @@ in another.
 - Open the seeded **pull request** (`feature/discount-codes`): CI checks ran
   automatically, CODEOWNERS auto-requested review, template pre-filled the
   description.
+- Open the **Projects tab** → [Sandbox Shop Roadmap](https://github.com/orgs/bugbee-ai/projects/1):
+  the same issues and PR tracked on a Todo / In Progress / Done board that
+  updates as work moves — planning and code in one place.
 - Try to merge → point out merging is gated on green checks. Then show
   Settings → Rules: `main` **requires a PR + passing CI** — nobody, including
   admins by default, pushes straight to production code. (Demo tip: teams
@@ -73,8 +76,8 @@ in another.
 - **iOS specifics:** macOS runners are billed at 10× Linux minutes; fastlane
   is the standard signing/TestFlight tool; certificates live in Actions
   secrets. Everything else in this demo is identical.
-- **Projects board:** to add a GitHub Projects (v2) board, run
-  `gh auth refresh -s project` once, then
-  `gh project create --owner bugbee-ai --title "Sandbox Shop Roadmap"`.
+- **Projects board:** live at
+  <https://github.com/orgs/bugbee-ai/projects/1> — GitHub Projects (v2),
+  linked to the repo's Projects tab.
 - **The checkout bug is intentional** (`BUGBEE-DEMO-BUG`) — it powers the
   Bugbee triage demo. Don't let anyone "helpfully" fix it live.
